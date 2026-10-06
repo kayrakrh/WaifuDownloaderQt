@@ -10,14 +10,12 @@ use std::{
 const ALPHABET: &[u8] = b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 const NAME_LEN: usize = 12;
 
-/// İşletim sistemi RNG'sinden, yalnızca [A-Za-z0-9] içeren rastgele isim.
 pub fn random_name(len: usize) -> Result<String> {
     let mut out = String::with_capacity(len);
     let mut buf = [0u8; 32];
     while out.len() < len {
         getrandom::fill(&mut buf).map_err(|e| anyhow!("rastgele veri alınamadı: {e}"))?;
         for &b in &buf {
-            // 248 = 62 * 4: modulo bias olmaması için fazlasını at
             if b < 248 {
                 out.push(ALPHABET[(b % 62) as usize] as char);
                 if out.len() == len {
@@ -39,7 +37,6 @@ pub fn extension_for(bytes: &[u8]) -> &'static str {
     }
 }
 
-/// Varsayılan klasöre, rastgele adla, orijinal baytları yazar.
 pub fn save_default(bytes: &[u8]) -> Result<PathBuf> {
     let dir = config::images_dir();
     fs::create_dir_all(&dir).with_context(|| format!("{} oluşturulamadı", dir.display()))?;
@@ -59,7 +56,6 @@ pub fn save_default(bytes: &[u8]) -> Result<PathBuf> {
     bail!("benzersiz dosya adı üretilemedi")
 }
 
-/// Diyalog açar. Kullanıcı iptal ederse None döner.
 pub fn save_ask(bytes: &[u8]) -> Option<Result<PathBuf>> {
     let detected = image::guess_format(bytes).ok();
     let name = match random_name(NAME_LEN) {
@@ -85,7 +81,7 @@ pub fn save_ask(bytes: &[u8]) -> Option<Result<PathBuf>> {
         } else {
             let img = image::load_from_memory(bytes)?;
             if target == Some(ImageFormat::Jpeg) {
-                img.to_rgb8().save(&path)?; // JPEG alfa desteklemez
+                img.to_rgb8().save(&path)?;
             } else {
                 img.save(&path)?;
             }
