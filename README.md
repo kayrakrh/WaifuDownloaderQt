@@ -1,9 +1,9 @@
 # WaifuDownloaderQt
  A QT application that downloads images of waifus/nekos based on https://waifu.im and https://nekos.moe 
  
-| Nekos.moe | Nekos.moe 2 |
+| Nekos.moe | Waifu.im |
 | --- | --- |
-| <img width="993" height="811" alt="image" src="https://github.com/user-attachments/assets/17041000-a6fe-40f8-b0db-9cb0ee022744" /> | <img width="995" height="812" alt="image" src="https://github.com/user-attachments/assets/eacf28d2-7437-47db-8831-c185ecba1857" /> |
+| <img width="1136" height="1125" alt="image" src="https://github.com/user-attachments/assets/20fbae7e-340d-4a1f-bdca-c9d31d95be25" /> | <img width="1134" height="1123" alt="image" src="https://github.com/user-attachments/assets/af5c726d-9c30-4013-927a-f55e06da2604" /> |
 
 
 ### Requirements
