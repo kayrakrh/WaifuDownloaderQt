@@ -5,26 +5,10 @@
 | --- | --- |
 | <img width="1136" height="1125" alt="image" src="https://github.com/user-attachments/assets/20fbae7e-340d-4a1f-bdca-c9d31d95be25" /> | <img width="1134" height="1123" alt="image" src="https://github.com/user-attachments/assets/af5c726d-9c30-4013-927a-f55e06da2604" /> |
 
-
-### Requirements
-
-* qt6-base-dev 
-* libcurl4-openssl-dev 
-* cmake
-
-### Build
-```bash
-git clone https://github.com/kayrakrh/WaifuDownloaderQt
-cd WaifuDownloaderQt
-mkdir build && cd build
-cmake .. -DCMAKE_BUILD_TYPE=Release
-make -j$(nproc)
-sudo make install
-```
+## Installation
 
 ## About WaifuDownloaderQt
 based on 
-* [`CatgirlDownloaderQT`](https://github.com/KairaBegudiri/catgirldownloaderqt)
 * [`NyarchLinux/CatgirlDownloader`](https://github.com/NyarchLinux/CatgirlDownloader)
 * [`NyarchLinux/WaifuDownloader`](https://github.com/NyarchLinux/WaifuDownloader)
 
