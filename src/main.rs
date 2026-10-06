@@ -36,10 +36,8 @@ fn main() -> Result<(), slint::PlatformError> {
     ui.set_save_modes(labels(&SaveMode::ALL, SaveMode::label));
     ui.set_placeholder("Click Refresh to load.".into());
 
-    // Kayıtlı tercihi yükle
     ui.set_save_mode_index(config::load().save_mode.index());
 
-    // Tercih değişince hemen diske yaz
     {
         let weak = ui.as_weak();
         ui.on_save_mode_changed(move |idx| {
@@ -51,7 +49,6 @@ fn main() -> Result<(), slint::PlatformError> {
         });
     }
 
-    // Refresh
     {
         let weak = ui.as_weak();
         let current = current.clone();
@@ -92,7 +89,6 @@ fn main() -> Result<(), slint::PlatformError> {
         });
     }
 
-    // Save
     {
         let weak = ui.as_weak();
         let current = current.clone();
@@ -106,7 +102,7 @@ fn main() -> Result<(), slint::PlatformError> {
             };
 
             match result {
-                None => {} // diyalog iptal edildi
+                None => {}
                 Some(Ok(path)) => {
                     ui.set_status(format!("Saved to '{}'.", path.display()).into());
                 }
