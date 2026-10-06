@@ -7,8 +7,8 @@
 
 ## Installation
 ```bash
-wget https://github.com/kayrakrh/WaifuDownloaderQt/releases/download/v3.0.0/waifudownloader-3.0.0-1-x86_64.pkg.tar.zst
-sudo pacman -U waifudownloader-3.0.0-1-x86_64.pkg.tar.zst
+wget https://github.com/kayrakrh/WaifuDownloaderQt/releases/download/v3.0.0/waifudownloader-3.0.0-3-x86_64.pkg.tar.zst
+sudo pacman -U waifudownloader-3.0.0-3-x86_64.pkg.tar.zst
 ```
 or just [install](https://github.com/kayrakrh/WaifuDownloaderQt/releases/tag/v3.0.0) appimage
 
