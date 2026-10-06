@@ -1,0 +1,108 @@
+import { ComboBox, Button, ProgressIndicator, VerticalBox, HorizontalBox } from "std-widgets.slint";
+
+export component MainWindow inherits Window {
+    title: "WaifuDownloader";
+    min-width: 450px;
+    min-height: 550px;
+    preferred-width: 700px;
+    preferred-height: 800px;
+
+    in property <[string]> sources;
+    in property <[string]> ratings;
+    in property <[string]> save-modes;
+    in property <image> picture;
+    in property <bool> has-picture;
+    in property <bool> loading;
+    in property <string> status: "Ready.";
+    in property <string> placeholder;
+    in-out property <int> source-index;
+    in-out property <int> rating-index;
+    in-out property <int> save-mode-index;
+
+    callback refresh();
+    callback save();
+    callback save-mode-changed(int);
+
+    VerticalBox {
+        HorizontalBox {
+            padding: 0px;
+            Text { text: "Source:"; vertical-alignment: center; }
+            ComboBox {
+                model: root.sources;
+                current-index <=> root.source-index;
+                enabled: !root.loading;
+                horizontal-stretch: 1;
+            }
+            Text { text: "Save:"; vertical-alignment: center; }
+            ComboBox {
+                model: root.save-modes;
+                current-index <=> root.save-mode-index;
+                horizontal-stretch: 1;
+                selected => { root.save-mode-changed(self.current-index); }
+            }
+        }
+
+        Rectangle {
+            vertical-stretch: 1;
+            horizontal-stretch: 1;
+            min-width: 0px;
+            min-height: 0px;
+            preferred-width: 0px;
+            preferred-height: 0px;
+            clip: true;
+
+            if root.has-picture: Image {
+                x: 0px;
+                y: 0px;
+                width: parent.width;
+                height: parent.height;
+                source: root.picture;
+                image-fit: contain;
+                image-rendering: smooth;
+            }
+            if !root.has-picture: Text {
+                width: parent.width;
+                height: parent.height;
+                text: root.placeholder;
+                horizontal-alignment: center;
+                vertical-alignment: center;
+                wrap: word-wrap;
+            }
+        }
+
+        HorizontalBox {
+            padding: 0px;
+            Text {
+                text: root.status;
+                vertical-alignment: center;
+                overflow: elide;
+                horizontal-stretch: 1;
+            }
+            ProgressIndicator {
+                width: 150px;
+                progress: 1.0;
+                indeterminate: root.loading;
+            }
+        }
+
+        HorizontalBox {
+            padding: 0px;
+            ComboBox {
+                model: root.ratings;
+                current-index <=> root.rating-index;
+                enabled: !root.loading;
+            }
+            Rectangle { horizontal-stretch: 1; }
+            Button {
+                text: "Refresh";
+                enabled: !root.loading;
+                clicked => { root.refresh(); }
+            }
+            Button {
+                text: "Save";
+                enabled: root.has-picture && !root.loading;
+                clicked => { root.save(); }
+            }
+        }
+    }
+}
