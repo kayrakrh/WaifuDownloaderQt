@@ -6,6 +6,11 @@
 | <img width="1136" height="1125" alt="image" src="https://github.com/user-attachments/assets/20fbae7e-340d-4a1f-bdca-c9d31d95be25" /> | <img width="1134" height="1123" alt="image" src="https://github.com/user-attachments/assets/af5c726d-9c30-4013-927a-f55e06da2604" /> |
 
 ## Installation
+```bash
+wget https://github.com/kayrakrh/WaifuDownloaderQt/releases/download/v3.0.0/waifudownloader-3.0.0-1-x86_64.pkg.tar.zst
+sudo pacman -U waifudownloader-3.0.0-1-x86_64.pkg.tar.zst
+```
+or just [install](https://github.com/kayrakrh/WaifuDownloaderQt/releases/tag/v3.0.0) appimage
 
 ## About WaifuDownloaderQt
 based on 
