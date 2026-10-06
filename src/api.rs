@@ -40,7 +40,6 @@ impl Rating {
         }
     }
 
-    /// Both: her istekte rastgele safe ya da nsfw seçer.
     fn resolve_nsfw(self) -> bool {
         match self {
             Rating::Safe => false,
