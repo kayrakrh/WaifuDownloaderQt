@@ -47,17 +47,14 @@ fn home() -> PathBuf {
     dirs::home_dir().unwrap_or_else(|| PathBuf::from("."))
 }
 
-/// ~/.local/waifudownloader/images/
 pub fn images_dir() -> PathBuf {
     home().join(".local/share/waifudownloader/images")
 }
 
-/// ~/.config/waifudownloader/configs.conf
 pub fn config_path() -> PathBuf {
     home().join(".config/waifudownloader/configs.conf")
 }
 
-/// Dosya yoksa ya da bozuksa varsayılanlarla devam eder.
 pub fn load() -> Config {
     let mut cfg = Config::default();
     let Ok(text) = fs::read_to_string(config_path()) else {
@@ -87,6 +84,6 @@ pub fn save(cfg: &Config) -> Result<()> {
     let content = format!("# WaifuDownloader\nsave_mode={}\n", cfg.save_mode.key());
     let tmp = path.with_extension("conf.tmp");
     fs::write(&tmp, content)?;
-    fs::rename(&tmp, &path)?; // yarım yazılmış config kalmasın
+    fs::rename(&tmp, &path)?; 
     Ok(())
 }
